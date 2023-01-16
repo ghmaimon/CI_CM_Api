@@ -6,6 +6,7 @@ import com.cicm.zonesservice.dto.response.GetAllZonesResponseDto;
 import com.cicm.zonesservice.dto.response.GetZoneDetailsResponseDto;
 import com.cicm.zonesservice.model.Zone;
 import com.cicm.zonesservice.service.ZoneService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,9 @@ public class ZoneController {
     private ZoneService zoneService;
 
     @PostMapping("")
-    public ResponseEntity<Void> createZone(CreateZoneRequestDto dto) {
+    public ResponseEntity<Void> createZone(
+            @Valid @RequestBody CreateZoneRequestDto dto
+    ) {
         Zone zone = zoneService.createZone(dto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

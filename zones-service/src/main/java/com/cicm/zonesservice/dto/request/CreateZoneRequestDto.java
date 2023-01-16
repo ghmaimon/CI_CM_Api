@@ -1,16 +1,11 @@
 package com.cicm.zonesservice.dto.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
 
-import javax.validation.constraints.NotNull;
-
-@Getter
-@Setter
-public class CreateZoneRequestDto {
-    private Long length;
-    private Long width;
-    @NotNull
-    private Long size;
-    private String physicalLocation;
+public record CreateZoneRequestDto (
+        Long length,
+        Long width,
+        @NotNull(message = "size must not be null") Long size,
+        String physicalLocation
+){
 }
