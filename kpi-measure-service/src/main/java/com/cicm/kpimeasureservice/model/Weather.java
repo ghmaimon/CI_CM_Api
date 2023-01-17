@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class Weather {
-
     private Float airPressure;
     private Float humidity;
     private Long precipitation;
