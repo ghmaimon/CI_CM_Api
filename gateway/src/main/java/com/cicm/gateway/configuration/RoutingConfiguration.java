@@ -20,13 +20,13 @@ public class RoutingConfiguration {
                 .build();
     }
 
-    private Function<PredicateSpec, Buildable<Route>> zoneServiceRoute =
+    private final Function<PredicateSpec, Buildable<Route>> zoneServiceRoute =
             (PredicateSpec ps) -> ps
                     .path(
-                            "/api/zones/**," +
-                                    " /api/sensors/**," +
-                                    " /api/irrigation-machines/**," +
-                                    " /api/plants/**"
+                            "/api/zones/**",
+                            " /api/sensors/**",
+                            " /api/irrigation-machines/**",
+                            " /api/plants/**"
                     )
                     .uri("lb://zones-service");
 }

@@ -9,6 +9,7 @@ import com.cicm.zonesservice.service.PlantService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,6 +24,7 @@ public class PlantController {
     private PlantService plantService;
 
     @PostMapping("")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> createPlant(
             @Valid @RequestBody CreatePlantRequestDto dto
     ) {
@@ -38,6 +40,7 @@ public class PlantController {
     }
 
     @PutMapping("/{plantId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> updatePlant(
             UpdatePlantRequestDto dto,
             @PathVariable("plantId") String plantId
@@ -55,6 +58,7 @@ public class PlantController {
     }
 
     @DeleteMapping("/{plantId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> deletePlant(@PathVariable("plantId") String plantId) {
         plantService.deletePlant(plantId);
 
@@ -62,6 +66,7 @@ public class PlantController {
     }
 
     @GetMapping("")
+    @PostAuthorize("isAuthenticated()")
     public ResponseEntity<List<GetAllPlantsResponseDto>> getAllPlants() {
 
         return ResponseEntity.ok()
@@ -69,6 +74,7 @@ public class PlantController {
     }
 
     @GetMapping("/{plantId}")
+    @PostAuthorize("isAuthenticated()")
     public ResponseEntity<GetPlantDetailsResponseDto> getPlantDetails(
             @PathVariable("plantId") String plantId
     ) {

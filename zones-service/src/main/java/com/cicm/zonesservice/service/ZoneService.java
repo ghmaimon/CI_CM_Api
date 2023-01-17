@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface ZoneService {
     Zone createZone(CreateZoneRequestDto dto);
     Zone updateZone(String zoneId, UpdateZoneRequestDto dto);

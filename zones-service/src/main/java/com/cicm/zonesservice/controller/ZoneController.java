@@ -9,6 +9,7 @@ import com.cicm.zonesservice.service.ZoneService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,6 +24,7 @@ public class ZoneController {
     private ZoneService zoneService;
 
     @PostMapping("")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> createZone(
             @Valid @RequestBody CreateZoneRequestDto dto
     ) {
@@ -38,6 +40,7 @@ public class ZoneController {
     }
 
     @PutMapping("/{zoneId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> updateZone(
             UpdateZoneRequestDto dto,
             @PathVariable("zoneId") String zoneId
@@ -55,6 +58,7 @@ public class ZoneController {
     }
 
     @DeleteMapping("/{zoneId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> deleteZone(@PathVariable("zoneId") String zoneId) {
         zoneService.deleteZone(zoneId);
 
@@ -69,6 +73,7 @@ public class ZoneController {
     }
 
     @GetMapping("/{zoneId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<GetZoneDetailsResponseDto> getZoneDetails(
             @PathVariable("zoneId") String zoneId
     ) {

@@ -10,6 +10,7 @@ import com.cicm.zonesservice.service.IrrigationMachineService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -24,6 +25,7 @@ public class IrrigationMachineController {
     private IrrigationMachineService irrigationMachineService;
 
     @PostMapping("")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> createIrrigationMachine(
             @Valid @RequestBody CreateIrrigationMachineRequestDto dto
     ) {
@@ -39,6 +41,7 @@ public class IrrigationMachineController {
     }
 
     @PutMapping("/{machineId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> updateIrrigationMachine(
             UpdateIrrigationMachineRequestDto dto,
             @PathVariable("machineId") String machineId
@@ -56,6 +59,7 @@ public class IrrigationMachineController {
     }
 
     @DeleteMapping("/{machineId}")
+    @PostAuthorize("hasAuthority('FARM_ADMIN')")
     public ResponseEntity<Void> deleteIrrigationMachine(@PathVariable("machineId") String machineId) {
         irrigationMachineService.deleteIrrigationMachine(machineId);
 
@@ -63,6 +67,7 @@ public class IrrigationMachineController {
     }
 
     @GetMapping("")
+    @PostAuthorize("isAuthenticated()")
     public ResponseEntity<List<GetAllIrrigationMachinesResponseDto>> getAllIrrigationMachines() {
 
         return ResponseEntity.ok()
@@ -70,6 +75,7 @@ public class IrrigationMachineController {
     }
 
     @GetMapping("/{machineId}")
+    @PostAuthorize("isAuthenticated()")
     public ResponseEntity<GetIrrigationMachineDetailsResponseDto> getIrrigationMachineDetails(
             @PathVariable("machineId") String machineId
     ) {

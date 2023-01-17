@@ -11,12 +11,14 @@ import com.cicm.zonesservice.repository.ZoneRepository;
 import com.cicm.zonesservice.service.ZoneService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Primary
+@Service
 public class ZoneServiceImpl implements ZoneService {
 
     private ZoneRepository zoneRepository;

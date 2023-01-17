@@ -11,12 +11,14 @@ import com.cicm.zonesservice.repository.PlantRepository;
 import com.cicm.zonesservice.service.PlantService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Primary
+@Service
 public class PlantServiceImpl implements PlantService {
 
     private PlantRepository plantRepository;

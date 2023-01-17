@@ -13,12 +13,14 @@ import com.cicm.zonesservice.service.SensorService;
 import com.cicm.zonesservice.service.ZoneService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Primary
+@Service
 public class SensorServiceImpl implements SensorService {
 
     private SensorRepository sensorRepository;
