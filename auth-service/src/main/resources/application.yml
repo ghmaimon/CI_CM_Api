@@ -9,6 +9,9 @@ micronaut:
           secret:
             generator:
               secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+
+mongodb:
+  uri: mongodb://${USERNAME}:${PASSWORD}@localhost:27017/${DATABASE_NAME}
 netty:
   default:
     allocator:
