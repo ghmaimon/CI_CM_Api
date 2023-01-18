@@ -17,6 +17,7 @@ public class RoutingConfiguration {
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(zoneServiceRoute)
+                .route(authServiceRoute)
                 .build();
     }
 
@@ -29,4 +30,9 @@ public class RoutingConfiguration {
                             " /api/plants/**"
                     )
                     .uri("lb://zones-service");
+
+    private final Function<PredicateSpec, Buildable<Route>> authServiceRoute =
+            (PredicateSpec ps) -> ps
+                    .path("/api/auth/**")
+                    .uri("lb://auth-service");
 }

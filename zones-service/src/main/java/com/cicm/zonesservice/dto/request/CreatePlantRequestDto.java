@@ -6,7 +6,6 @@ public record CreatePlantRequestDto(
         @NotNull String name,
         String description,
         Long lowerWaterThreshold,
-        Long upperWaterThreshold,
-        String zoneId
+        Long upperWaterThreshold
 ) {
 }

@@ -1,0 +1,64 @@
+version: "3"
+services:
+
+  config-server:
+    image: config-server
+    networks:
+      - ci_cm
+    ports:
+      - "8888:8888"
+
+  naming-server:
+    image: naming-server
+    ports:
+      - "8761:8761"
+    networks:
+      - ci_cm
+    depends_on:
+      - config-server
+
+  gateway:
+    image: gateway
+    ports:
+      - "8765:8765"
+    networks:
+      - ci_cm
+    depends_on:
+      - config-server
+      - naming-server
+
+  auth-service:
+    image: auth-service
+    ports:
+      - "8402:8402"
+    networks:
+      - ci_cm
+    depends_on:
+      - config-server
+      - naming-server
+      - gateway
+
+  kpi-measure-service:
+    image: kpi-measure-service
+    ports:
+      - "8401:8401"
+    networks:
+      - ci_cm
+    depends_on:
+      - config-server
+      - naming-server
+      - gateway
+
+  zones-service:
+    image: zones-service
+    ports:
+      - "8400:8400"
+    networks:
+      - ci_cm
+    depends_on:
+      - config-server
+      - naming-server
+      - gateway
+
+networks:
+  ci_cm:

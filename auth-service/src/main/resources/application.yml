@@ -1,6 +1,8 @@
 micronaut:
+  server:
+    port: 8402
   application:
-    name: authService
+    name: "auth-service"
   security:
     authentication: bearer
     endpoints:
@@ -16,6 +18,11 @@ micronaut:
             generator:
               secret: ${JWT_GENERATOR_SIGNATURE_SECRET:}
               jws-algorithm: HS256
+
+eureka:
+  client:
+    registration:
+      enabled: true
 
 mongodb:
   uri: ${MONGO_DB_URI}
