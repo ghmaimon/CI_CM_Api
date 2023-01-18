@@ -28,8 +28,8 @@ public class IdentityService {
     }
 
 
-    public void signUp(UserDTO userDTO) {
+    public UserDTO createUser(UserDTO userDTO) {
         Identity identity = identityMapper.toEntity(userDTO);
-        identityRepository.save(identity);
+        return identityMapper.toDTO(identityRepository.save(identity));
     }
 }

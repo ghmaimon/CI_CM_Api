@@ -17,10 +17,10 @@ public class AuthenticationProviderUserPassword implements AuthenticationProvide
 
     private final IdentityService identityService;
 
+
     @Override
     public Publisher<AuthenticationResponse> authenticate(HttpRequest<?> httpRequest, AuthenticationRequest<?, ?> authenticationRequest) {
         return Flux.create(emitter -> {
-
             if (identityService.validateCredentials(authenticationRequest.getIdentity().toString(),
                     authenticationRequest.getSecret().toString())
             ) {

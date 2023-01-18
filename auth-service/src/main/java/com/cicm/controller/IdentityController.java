@@ -6,24 +6,21 @@ import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
-import io.micronaut.security.rules.SecurityRule;
-import io.micronaut.security.token.jwt.render.BearerAccessRefreshToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.Valid;
 
-@Controller
+@Controller("/api/auth")
 @Slf4j
 @RequiredArgsConstructor
+@Secured({"FARM_ADMIN"})
 public class IdentityController {
 
     private final IdentityService identityService;
 
-    @Post
-    @Secured(SecurityRule.IS_ANONYMOUS)
-    public void signUp(@Body @Valid UserDTO userDTO) {
-        log.info("Sign up");
-        identityService.signUp(userDTO);
+    @Post("/create")
+    public UserDTO createUser(@Body @Valid UserDTO userDTO) {
+        return identityService.createUser(userDTO);
     }
 }

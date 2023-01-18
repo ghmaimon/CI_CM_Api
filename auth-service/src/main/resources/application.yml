@@ -3,15 +3,22 @@ micronaut:
     name: authService
   security:
     authentication: bearer
+    endpoints:
+      login:
+        path: /api/auth/login
     token:
       jwt:
+        generator:
+          access-token:
+            expiration: 604800
         signatures:
           secret:
             generator:
-              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:}
+              jws-algorithm: HS256
 
 mongodb:
-  uri: mongodb://${USERNAME}:${PASSWORD}@localhost:27017/${DATABASE_NAME}
+  uri: ${MONGO_DB_URI}
 netty:
   default:
     allocator:

@@ -1,18 +1,16 @@
 package com.cicm.model;
 
-import java.time.LocalDate;
-import javax.persistence.Column;
-
-
-import io.micronaut.data.annotation.GeneratedValue;
-import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import java.util.UUID;
+import java.time.LocalDate;
 
 @MappedEntity
 @Setter
@@ -20,8 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Identity {
     @Id
-    @GeneratedValue
-    private UUID id;
+    private String id;
 
     @Column(unique = true, nullable = false)
     private String username;
@@ -35,11 +32,15 @@ public class Identity {
     @Column(nullable = false)
     private LocalDate dateOfBirth;
 
-    public Identity(String username, String fullName, String email, String password, LocalDate dateOfBirth) {
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public Identity(String username, String fullName, String email, String password, LocalDate dateOfBirth,Role role) {
         this.username = username;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
+        this.role = role;
     }
 }

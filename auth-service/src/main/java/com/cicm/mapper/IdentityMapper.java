@@ -2,8 +2,10 @@ package com.cicm.mapper;
 
 import com.cicm.dto.UserDTO;
 import com.cicm.model.Identity;
+import jakarta.inject.Singleton;
 import org.mindrot.jbcrypt.BCrypt;
 
+@Singleton
 public class IdentityMapper {
 
     public UserDTO toDTO(Identity identity) {
@@ -12,7 +14,8 @@ public class IdentityMapper {
                 identity.getUsername(),
                 identity.getEmail(),
                 null,
-                identity.getDateOfBirth()
+                identity.getDateOfBirth(),
+                identity.getRole()
         );
     }
     public Identity toEntity(UserDTO userDTO) {
@@ -21,7 +24,8 @@ public class IdentityMapper {
                 userDTO.fullName(),
                 userDTO.email(),
                 BCrypt.hashpw(userDTO.password(), BCrypt.gensalt()),
-                userDTO.dateOfBirth()
+                userDTO.dateOfBirth(),
+                userDTO.role()
         );
     }
 }
