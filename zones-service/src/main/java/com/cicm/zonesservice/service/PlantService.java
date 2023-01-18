@@ -15,4 +15,5 @@ public interface PlantService {
     GetPlantDetailsResponseDto getPlantDetails(String plantId);
     List<GetAllPlantsResponseDto> getAllPlants();
     void deletePlant(String plantId);
+    GetPlantDetailsResponseDto getPlantWithSensorId(String sensorId);
 }

@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 public record UpdateZoneRequestDto (
         Long length,
         Long width,
-        @NotNull Long size,
-        String physicalLocation
+        @NotNull Long size
 ){
 }

@@ -73,6 +73,16 @@ public class PlantController {
                 .body(plantService.getAllPlants());
     }
 
+    @GetMapping("/sensor-id/{sensorId}")
+    ResponseEntity<GetPlantDetailsResponseDto> getplantWithSensorId(
+            @PathVariable("sensorId") String sensorId
+    ) {
+        GetPlantDetailsResponseDto dto = plantService.getPlantWithSensorId(sensorId);
+        return ResponseEntity.ok()
+                .body(dto);
+    }
+
+
     @GetMapping("/{plantId}")
     @PostAuthorize("isAuthenticated()")
     public ResponseEntity<GetPlantDetailsResponseDto> getPlantDetails(

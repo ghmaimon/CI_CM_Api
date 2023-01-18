@@ -1,8 +1,6 @@
 package com.cicm.kpimeasureservice.model;
 
 import com.cicm.kpimeasureservice.enumeration.AlertType;
-import lombok.Data;
-
 import java.time.Instant;
 
 public record Alert(

@@ -42,8 +42,7 @@ public class SensorServiceImpl implements SensorService {
 
         if (dto.name() != null) sensor.setName(dto.name());
         if (dto.description() != null) sensor.setDescription(dto.description());
-        if (dto.orderDate() != null) sensor.setOrderDate(dto.orderDate());
-        if (dto.zoneId() != null) {
+            if (dto.zoneId() != null) {
             Zone zone = zoneService.findZone(dto.zoneId());
             sensor.setZone(zone);
         }

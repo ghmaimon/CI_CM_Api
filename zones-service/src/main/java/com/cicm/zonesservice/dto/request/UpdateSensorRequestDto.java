@@ -8,7 +8,6 @@ public record UpdateSensorRequestDto
         (
             String name,
             String description,
-            Date orderDate,
             String zoneId
-        )
+            )
 { }

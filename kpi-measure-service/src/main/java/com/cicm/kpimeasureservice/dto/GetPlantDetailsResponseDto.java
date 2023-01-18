@@ -1,4 +1,4 @@
-package com.cicm.zonesservice.dto.response;
+package com.cicm.kpimeasureservice.dto;
 
 public record GetPlantDetailsResponseDto(
         String id,

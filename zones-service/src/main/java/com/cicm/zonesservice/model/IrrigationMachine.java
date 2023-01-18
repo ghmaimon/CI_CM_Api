@@ -15,7 +15,6 @@ public class IrrigationMachine {
     private String id;
     private String name;
     private String description;
-    private List<String> kpis;
     @DocumentReference(lazy = true)
     private Zone zone;
 }

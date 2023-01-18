@@ -10,7 +10,6 @@ public record CreateIrrigationMachineRequestDto
         (
             @NotNull String name,
             String description,
-            @NotNull @NotEmpty List<String> kpis,
             String zoneId
         )
 { }

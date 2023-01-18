@@ -4,6 +4,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record CreatePlantRequestDto(
         @NotNull String name,
-        String description
+        String description,
+        Long lowerWaterThreshold,
+        Long upperWaterThreshold,
+        String zoneId
 ) {
 }

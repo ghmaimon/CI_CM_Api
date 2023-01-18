@@ -42,7 +42,6 @@ public class IrrigationMachineServiceImpl implements IrrigationMachineService {
                 () -> new IrrigationMachineNotFoundException(machineId)
         );
 
-        if (dto.kpis() != null) irrigationMachine.setKpis(dto.kpis());
         if (dto.description() != null) irrigationMachine.setDescription(dto.description());
         if (dto.name() != null) irrigationMachine.setName(dto.name());
 

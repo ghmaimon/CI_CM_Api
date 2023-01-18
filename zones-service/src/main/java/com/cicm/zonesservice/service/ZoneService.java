@@ -16,4 +16,5 @@ public interface ZoneService {
     List<GetAllZonesResponseDto> getAllZones();
     void deleteZone(String zoneId);
     Zone findZone(String zoneId);
+    Zone getZoneWithSensorId(String sensorId);
 }

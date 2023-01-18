@@ -24,29 +24,32 @@ public class ZoneServiceImpl implements ZoneService {
     private ZoneRepository zoneRepository;
     private ZoneMapper zoneMapper;
 
+    @Override
     public Zone createZone(CreateZoneRequestDto dto) {
         return zoneRepository.save(
                 zoneMapper.createZoneRequestDtoToZoneMapper(dto)
         );
     }
 
+    @Override
     public Zone updateZone(String zoneId, UpdateZoneRequestDto dto) {
         Zone zone = findZone(zoneId);
 
         if (dto.size() != null) zone.setSize(dto.size());
         if (dto.width() != null) zone.setWidth(dto.width());
         if (dto.length() != null) zone.setLength(dto.length());
-        if (dto.physicalLocation() != null) zone.setPhysicalLocation(dto.physicalLocation());
 
         return zone;
     }
 
+    @Override
     public GetZoneDetailsResponseDto getZoneDetails(String zoneId) {
         return zoneMapper.zoneToGetZoneDetailsResponseDtoMapper(
                 findZone(zoneId)
         );
     }
 
+    @Override
     public List<GetAllZonesResponseDto> getAllZones() {
         return zoneRepository.findAll()
                 .stream()
@@ -58,6 +61,13 @@ public class ZoneServiceImpl implements ZoneService {
     public Zone findZone(String zoneId) {
         return zoneRepository.findById(zoneId).orElseThrow(
                 () -> new ZoneNotFoundException(zoneId)
+        );
+    }
+
+    @Override
+    public Zone getZoneWithSensorId(String sensorId) {
+        return zoneRepository.findZoneBySensor_Id(sensorId).orElseThrow(
+                () -> new ZoneNotFoundException("***")
         );
     }
 

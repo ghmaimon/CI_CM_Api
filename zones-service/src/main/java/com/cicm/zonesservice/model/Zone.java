@@ -19,7 +19,7 @@ public class Zone {
     private Long size; // in hectares
     private String physicalLocation; // to use in Google Maps
     @DocumentReference
-    private List<Sensor> sensors;
+    private Sensor sensor;
     @DocumentReference(lazy = true)
     private Plant plant;
     @DocumentReference

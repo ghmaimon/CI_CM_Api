@@ -15,12 +15,9 @@ public class Sensor {
     @Id
     private String id;
     @NotNull
-    private Date orderDate;
-    @NotNull
     private String name;
     private String description;
     @DocumentReference(lazy = true)
     private Zone zone;
-
-
+    private String physicalLocation; // to use in Google Maps
 }

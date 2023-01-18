@@ -9,7 +9,6 @@ public record UpdateIrrigationMachineRequestDto
         (
             String name,
             String description,
-            List<String> kpis,
             String zoneId
         )
 { }
